@@ -1,6 +1,6 @@
 # Twitch Token Login Extension
 
-A modern, minimalistic Chrome extension for logging into Twitch using your authentication token. Secure, fast, and private—built for users who need quick token-based access to Twitch without entering their credentials.
+A modern, minimalistic Chrome extension for logging into Twitch using your authentication token. Secure, fast, and private — built for users who need quick token-based access to Twitch without entering their credentials.
 
 ## Features
 
@@ -54,3 +54,4 @@ Created by [3d2faebf4bca96cacf2aa10dc002bf42](https://github.com/3d2faebf4bca96c
 
 **Disclaimer:**  
 This extension is for educational and development purposes only. Use responsibly and in accordance with Twitch's Terms of Service.
+
