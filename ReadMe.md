@@ -1,49 +1,50 @@
 # Twitch Token Login Extension
 
-A Chrome extension for logging into Twitch using authentication tokens. Designed for local development and testing purposes.
+A modern, minimalistic Chrome extension for logging into Twitch using your authentication token. Secure, fast, and private—built for users who need quick token-based access to Twitch without entering their credentials.
 
 ## Features
 
-- 🔐 **Token-based Authentication** - Login to Twitch using auth tokens
-- 🧹 **Cookie Management** - Automatically clears old session cookies
-- ⚡ **Quick Access** - Simple popup interface for fast login
-- 🎨 **Modern UI** - Clean, Twitch-themed design
-- 🔄 **Auto Redirect** - Automatically navigates to Twitch after login
+- 🔑 **Token-Based Login:** Instantly log in to Twitch using your auth token.
+- 🧹 **Secure Cookie Management:** Automatically clears old Twitch session cookies before setting your new auth token for a clean, conflict-free login.
+- 🟣 **Modern Twitch-Themed UI:** Clean, responsive popup with accessibility and keyboard support.
+- ⚡ **Efficient, Minimal Workflow:** Login in seconds, directly from your browser, without storing any sensitive data.
+- 🔄 **Automatic Page Reload:** Reloads Twitch after login to ensure your session is updated.
+- ✨ **No Credentials Stored:** Your token is never saved or transmitted outside your browser.
 
 ## Installation
 
-1. Download or clone this repository
-2. Open Chrome and navigate to `chrome://extensions/`
-3. Enable "Developer mode" in the top right
-4. Click "Load unpacked" and select the extension folder
-5. The extension icon will appear in your toolbar
+1. Download or clone this repository.
+2. Open Chrome and navigate to `chrome://extensions/`.
+3. Enable **Developer mode** (top right).
+4. Click **Load unpacked** and select the extension folder.
+5. The Twitch Token Login icon will appear in your toolbar.
 
 ## Usage
 
-1. Click the extension icon in your Chrome toolbar
-2. Enter your Twitch auth token in the input field
-3. Click "Login to Twitch"
-4. The extension will clear old cookies and set your new auth token
-5. You'll be automatically redirected to Twitch
+1. Click the extension icon in your Chrome toolbar.
+2. Enter your Twitch auth token in the popup input field.
+3. Click **Login to Twitch**.
+4. The extension clears old Twitch cookies, sets your new auth token, and reloads the current Twitch tab.
+5. You're instantly logged in—no username or password required.
 
 ## Permissions
 
-This extension requires the following permissions:
-- `scripting` - Execute login scripts on Twitch pages
-- `cookies` - Manage authentication cookies
-- `tabs` - Access current tab information
-- `storage` - Store extension data
+This extension requires:
+- `scripting` – To inject login scripts for cookie/session handling on Twitch pages.
+- `activeTab` – To ensure login actions are performed on the correct Twitch tab.
+- `host_permissions` for `*.twitch.tv/*` – To limit actions strictly to Twitch.
 
 ## Security Notes
 
-- This extension is intended for local development use only
-- Auth tokens are not stored permanently
-- Old session cookies are cleared before setting new ones
-- Only works on `*.twitch.tv` domains
+- Auth tokens are **never stored** or transmitted anywhere.
+- Old session cookies are thoroughly cleared to prevent session conflicts.
+- Only works on official Twitch domains for maximum privacy and security.
 
 ## Development
 
-Built with vanilla JavaScript and Chrome Extension Manifest V3.
+- 100% vanilla JavaScript, clean HTML, and CSS.
+- Built with Chrome Extension Manifest V3.
+- Designed for quick extension popup interactions and single-purpose security.
 
 ## Author
 
@@ -51,4 +52,5 @@ Created by [3d2faebf4bca96cacf2aa10dc002bf42](https://github.com/3d2faebf4bca96c
 
 ---
 
-⚠️ **Disclaimer**: This extension is for educational and development purposes only. Use responsibly and in accordance with Twitch's Terms of Service.
+**Disclaimer:**  
+This extension is for educational and development purposes only. Use responsibly and in accordance with Twitch's Terms of Service.
