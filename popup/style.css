@@ -1,0 +1,122 @@
+body {
+  background-color: #9146ff;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  color: white;
+  height: 180px;
+  width: 320px;
+  padding: 10px;
+}
+
+.inner-container {
+  align-items: center;
+  background-color: #18181b;
+  border-radius: 8px;
+  display: flex;
+  height: 180px;
+  width: 320px;
+  border: 1px solid #464649;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.invisible-box {
+  display: flex;
+  flex-direction: column;
+  height: 140px;
+  margin-left: 20px;
+  width: 280px;
+  justify-content: center;
+}
+
+.token-label {
+  color: #adadb8;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#submit {
+  background-color: #9146ff;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  height: 36px;
+  margin-top: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+#submit:hover:not(:disabled) {
+  background-color: #772ce8;
+  transform: translateY(-1px);
+}
+
+#submit:active:not(:disabled) {
+  background-color: #5c16c5;
+  transform: translateY(0);
+}
+
+#submit:disabled {
+  background-color: #464649;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#token {
+  color: #efeff1;
+  background-color: #0e0e10;
+  border: 2px solid #464649;
+  border-radius: 6px;
+  height: 32px;
+  outline: none;
+  padding: 0 12px;
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+#token:focus {
+  border-color: #9146ff;
+  box-shadow: 0 0 0 2px rgba(145, 70, 255, 0.2);
+}
+
+#token::placeholder {
+  color: #717177;
+}
+
+.status-message {
+  font-size: 12px;
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  text-align: center;
+  display: none;
+}
+
+.status-message.success {
+  background-color: rgba(0, 255, 127, 0.1);
+  color: #00ff7f;
+  border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.status-message.error {
+  background-color: rgba(255, 69, 58, 0.1);
+  color: #ff453a;
+  border: 1px solid rgba(255, 69, 58, 0.3);
+}
