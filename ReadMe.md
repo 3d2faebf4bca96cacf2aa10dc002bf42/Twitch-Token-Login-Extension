@@ -26,19 +26,6 @@ A Chrome extension for logging into Twitch using authentication tokens. Designed
 4. The extension will clear old cookies and set your new auth token
 5. You'll be automatically redirected to Twitch
 
-## File Structure
-
-```
-extension/
-├── manifest.json          # Extension configuration
-├── popup/                 # Popup interface
-│   ├── index.html        # Main popup HTML
-│   ├── script.js         # Login functionality
-│   └── style.css         # Popup styling
-└── icons/                # Extension assets
-    └── login.png         # Extension icon
-```
-
 ## Permissions
 
 This extension requires the following permissions:
@@ -65,5 +52,3 @@ Created by [3d2faebf4bca96cacf2aa10dc002bf42](https://github.com/3d2faebf4bca96c
 ---
 
 ⚠️ **Disclaimer**: This extension is for educational and development purposes only. Use responsibly and in accordance with Twitch's Terms of Service.
-```
-
