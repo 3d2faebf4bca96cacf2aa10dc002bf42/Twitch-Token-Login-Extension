@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-store/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# Chrome Extension specific (if any build output or temporary files were generated)
+# For this simple extension, there aren't typical build outputs,
+# but if you were to add a build step, you'd add its output directory here.
+# For example:
+# dist/
+# build/
+
+# Environment variables (if you were to use a .env file, which is not typical for extensions)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
