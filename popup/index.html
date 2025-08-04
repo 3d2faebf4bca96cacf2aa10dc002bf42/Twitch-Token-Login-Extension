@@ -7,16 +7,35 @@
     <title>Twitch Token Login</title>
     <link rel="stylesheet" href="style.css">    
 </head>
-<body class="twitch-token-login-popup">
+<body>
     <div class="container">
-        <div class="inner-container">
-            <div class="invisible-box">
-                <p class="token-label">AUTH TOKEN</p>
-                <input id="token" spellcheck="false" placeholder="Enter your auth token">
-                <button id="submit" class="unselectable">Login to Twitch</button>
-                <div id="status" class="status-message"></div>
+        <header class="header">
+            <img src="../icons/logo.png" alt="Twitch Icon" class="header-icon">
+            <h1 class="header-title">Twitch Token Login</h1>
+        </header>
+        <div class="content-wrapper">
+            <div class="input-group">
+                <label for="token" class="token-label">AUTH TOKEN</label>
+                <div class="input-wrapper">
+                    <input id="token" type="text" spellcheck="false" placeholder="Enter your auth token" aria-label="Auth Token Input">
+                    <button id="clear-token" class="clear-button" title="Clear token input" aria-label="Clear token input">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
             </div>
+            <button id="submit" class="login-button unselectable">Login to Twitch</button>
+            <div id="status" class="status-message" role="status" aria-live="polite"></div>
         </div>
+        <footer class="footer">
+            <a href="https://www.twitch.tv" target="_blank" rel="noopener noreferrer" class="twitch-link">Go to Twitch.tv</a>
+            <div class="footer-separator"></div>
+            <div class="copyright-info">
+                <span>&copy; 2025</span>
+                <a href="https://github.com/3d2faebf4bca96cacf2aa10dc002bf42/Twitch-Token-Login-Extension" target="_blank" rel="noopener noreferrer" class="github-link" title="View on GitHub">
+                    <img src="../icons/github.png" alt="GitHub Icon" class="github-icon">
+                </a>
+            </div>
+        </footer>
     </div>
 
     <script src="script.js"></script>

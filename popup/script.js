@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.querySelector("#submit")
   const tokenInput = document.querySelector("#token")
+  const clearTokenButton = document.querySelector("#clear-token")
   const statusDiv = document.querySelector("#status")
-  const chrome = window.chrome // Declare the chrome variable
+  const chrome = window.chrome
 
-  function showStatus(message, isError = false) {
+  function showStatus(message, type = "info") {
     statusDiv.textContent = message
-    statusDiv.className = `status-message ${isError ? "error" : "success"}`
+    statusDiv.className = `status-message ${type}`
     statusDiv.style.display = "block"
   }
 
@@ -18,52 +19,54 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = tokenInput.value.trim()
 
     if (!token) {
-      showStatus("Please enter an auth token", true)
+      showStatus("Please enter an auth token.", "error")
       return
     }
 
     hideStatus()
     submitButton.disabled = true
     submitButton.textContent = "Logging in..."
+    tokenInput.disabled = true
+    clearTokenButton.disabled = true
 
     try {
-      // Get the current active tab
+      // Get the current active tab (requires 'activeTab' permission)
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
 
-      if (!tab) {
-        throw new Error("No active tab found")
+      if (!tab || !tab.url.includes("twitch.tv")) {
+        showStatus("Please navigate to Twitch.tv before logging in.", "error")
+        return
       }
 
-      // Check if we're on a Twitch page, if not, navigate to Twitch first
-      if (!tab.url.includes("twitch.tv")) {
-        await chrome.tabs.update(tab.id, { url: "https://www.twitch.tv" })
-        // Wait a bit for the page to load
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-      }
-
-      // Execute the login script
+      // Execute the login script in the active tab (requires 'scripting' permission)
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: loginToTwitch,
         args: [token],
       })
 
-      showStatus("Login successful! Redirecting...", false)
+      showStatus("Login script executed. Page reloading...", "success")
 
-      // Close the popup after a short delay
       setTimeout(() => {
         window.close()
-      }, 1500)
+      }, 2000)
     } catch (error) {
-      console.error("Login failed:", error)
-      showStatus(`Login failed: ${error.message}`, true)
+      console.error("Login process failed:", error)
+      showStatus(`Login failed: ${error.message || "An unknown error occurred."}`, "error")
     } finally {
       submitButton.disabled = false
       submitButton.textContent = "Login to Twitch"
+      tokenInput.disabled = false
+      clearTokenButton.disabled = false
     }
   })
 
-  // Allow Enter key to submit
+  clearTokenButton.addEventListener("click", () => {
+    tokenInput.value = ""
+    tokenInput.focus()
+    hideStatus()
+  })
+
   tokenInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       submitButton.click()
@@ -71,43 +74,43 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
+// This function runs in the context of the active tab
 function loginToTwitch(token) {
-  console.log("Starting Twitch login process...")
+  console.log("Twitch Token Login: Starting cookie manipulation...")
 
-  // Clear specific old cookies that shouldn't be carried over
   const cookiesToClear = ["twilight-user", "auth-token", "last_login", "login", "name"]
   const pastDate = "Thu, 01 Jan 1970 00:00:00 GMT"
 
-  // Clear cookies for different domain variations
+  const domains = [".twitch.tv", "twitch.tv", "www.twitch.tv"]
+  const paths = ["/", "/."]
+
   cookiesToClear.forEach((cookieName) => {
-    // Clear for .twitch.tv domain
-    document.cookie = `${cookieName}=; domain=.twitch.tv; path=/; expires=${pastDate}; Secure`
-    // Clear for twitch.tv domain
-    document.cookie = `${cookieName}=; domain=twitch.tv; path=/; expires=${pastDate}; Secure`
-    // Clear for current domain
+    domains.forEach((domain) => {
+      paths.forEach((path) => {
+        document.cookie = `${cookieName}=; domain=${domain}; path=${path}; expires=${pastDate}; Secure; SameSite=None`
+        document.cookie = `${cookieName}=; domain=${domain}; path=${path}; expires=${pastDate}; Secure`
+        document.cookie = `${cookieName}=; domain=${domain}; path=${path}; expires=${pastDate}`
+        console.log(`Twitch Token Login: Attempted to clear cookie: ${cookieName} for domain ${domain} path ${path}`)
+      })
+    })
+    document.cookie = `${cookieName}=; path=/; expires=${pastDate}; Secure; SameSite=None`
     document.cookie = `${cookieName}=; path=/; expires=${pastDate}; Secure`
-    // Clear without domain
     document.cookie = `${cookieName}=; path=/; expires=${pastDate}`
+    console.log(`Twitch Token Login: Attempted to clear cookie: ${cookieName} for current domain`)
   })
 
-  // Clean the token (remove quotes if present)
   const cleanToken = token.replace(/['"]/g, "")
 
-  // Set expiration time (1 year from now)
   const expirationTime = new Date()
   expirationTime.setFullYear(expirationTime.getFullYear() + 1)
 
-  // Set the new auth-token cookie with different variations to ensure it works
-  const cookieString = `auth-token=${cleanToken}; domain=.twitch.tv; path=/; expires=${expirationTime.toUTCString()}; Secure; SameSite=None`
-  document.cookie = cookieString
+  const cookieOptions = `domain=.twitch.tv; path=/; expires=${expirationTime.toUTCString()}; Secure; SameSite=Lax` // Changed to Lax for broader compatibility
+  document.cookie = `auth-token=${cleanToken}; ${cookieOptions}`
+  console.log(`Twitch Token Login: Set new auth-token cookie: auth-token=${cleanToken}; ${cookieOptions}`)
 
-  // Also try without SameSite=None in case it causes issues
-  document.cookie = `auth-token=${cleanToken}; domain=.twitch.tv; path=/; expires=${expirationTime.toUTCString()}; Secure`
-
-  console.log("Auth token cookie set, reloading page...")
-
-  // Reload the page to apply the new authentication
+  // A small delay before reloading to ensure the browser processes the cookie change
   setTimeout(() => {
     window.location.reload()
-  }, 500)
+    console.log("Twitch Token Login: Page reload initiated.")
+  }, 750)
 }

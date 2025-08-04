@@ -1,122 +1,251 @@
+:root {
+  --twitch-purple: #9146ff;
+  --twitch-dark: #18181b;
+  --twitch-dark-alt: #0e0e10;
+  --twitch-gray: #464649;
+  --text-light: #efeff1;
+  --text-muted: #adadb8;
+  --placeholder-text: #717177;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --transition-speed: 0.2s;
+}
+
 body {
-  background-color: #9146ff;
-  margin: 0;
+  width: 320px;
+  height: auto;
+  background-color: initial;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
 }
 
 .container {
-  color: white;
-  height: 180px;
-  width: 320px;
-  padding: 10px;
-}
-
-.inner-container {
-  align-items: center;
-  background-color: #18181b;
-  border-radius: 8px;
-  display: flex;
-  height: 180px;
-  width: 320px;
-  border: 1px solid #464649;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.invisible-box {
+  color: var(--text-light);
+  width: 100%;
+  background-color: var(--twitch-dark);
+  border: 1px solid var(--twitch-gray);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
-  height: 140px;
-  margin-left: 20px;
-  width: 280px;
-  justify-content: center;
+}
+
+.header {
+  background-color: var(--twitch-dark-alt);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--twitch-gray);
+}
+
+.header-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-light);
+}
+
+.content-wrapper {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .token-label {
-  color: #adadb8;
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
   font-weight: 600;
-  margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.unselectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
-#submit {
-  background-color: #9146ff;
+#token {
+  flex-grow: 1;
+  color: var(--text-light);
+  background-color: var(--twitch-dark-alt);
+  border: 2px solid var(--twitch-gray);
+  border-radius: var(--border-radius-sm);
+  height: 36px;
+  outline: none;
+  padding: 0 12px;
+  padding-right: 36px;
+  font-size: 13px;
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+#token:focus {
+  border-color: var(--twitch-purple);
+  box-shadow: 0 0 0 2px rgba(145, 70, 255, 0.25);
+}
+
+#token::placeholder {
+  color: var(--placeholder-text);
+}
+
+.clear-button {
+  position: absolute;
+  right: 8px;
+  background: none;
   border: none;
-  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: color var(--transition-speed) ease;
+}
+
+.clear-button:hover {
+  color: var(--text-light);
+}
+
+.clear-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.login-button {
+  background-color: var(--twitch-purple);
+  border: none;
+  border-radius: var(--border-radius-sm);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
-  height: 36px;
-  margin-top: 12px;
-  transition: all 0.2s ease;
+  height: 38px;
+  transition: all var(--transition-speed) ease;
   cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#submit:hover:not(:disabled) {
+.login-button:hover:not(:disabled) {
   background-color: #772ce8;
   transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(145, 70, 255, 0.3);
 }
 
-#submit:active:not(:disabled) {
+.login-button:active:not(:disabled) {
   background-color: #5c16c5;
   transform: translateY(0);
+  box-shadow: none;
 }
 
-#submit:disabled {
-  background-color: #464649;
+.login-button:disabled {
+  background-color: var(--twitch-gray);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-#token {
-  color: #efeff1;
-  background-color: #0e0e10;
-  border: 2px solid #464649;
-  border-radius: 6px;
-  height: 32px;
-  outline: none;
-  padding: 0 12px;
-  font-size: 13px;
-  transition: border-color 0.2s ease;
-}
-
-#token:focus {
-  border-color: #9146ff;
-  box-shadow: 0 0 0 2px rgba(145, 70, 255, 0.2);
-}
-
-#token::placeholder {
-  color: #717177;
-}
-
 .status-message {
   font-size: 12px;
-  margin-top: 8px;
-  padding: 6px 8px;
-  border-radius: 4px;
+  margin-top: 5px;
+  padding: 8px 12px;
+  border-radius: var(--border-radius-sm);
   text-align: center;
   display: none;
+  width: calc(100% - 24px);
+  font-weight: 500;
 }
 
 .status-message.success {
-  background-color: rgba(0, 255, 127, 0.1);
+  background-color: rgba(0, 255, 127, 0.15);
   color: #00ff7f;
-  border: 1px solid rgba(0, 255, 127, 0.3);
+  border: 1px solid rgba(0, 255, 127, 0.4);
 }
 
 .status-message.error {
-  background-color: rgba(255, 69, 58, 0.1);
+  background-color: rgba(255, 69, 58, 0.15);
   color: #ff453a;
-  border: 1px solid rgba(255, 69, 58, 0.3);
+  border: 1px solid rgba(255, 69, 58, 0.4);
+}
+
+.status-message.info {
+  background-color: rgba(0, 127, 255, 0.15);
+  color: #007fff;
+  border: 1px solid rgba(0, 127, 255, 0.4);
+}
+
+.footer {
+  padding: 10px 20px;
+  background-color: var(--twitch-dark-alt);
+  border-top: 1px solid var(--twitch-gray);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.twitch-link {
+  color: var(--twitch-purple);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: color var(--transition-speed) ease;
+}
+
+.twitch-link:hover {
+  color: #772ce8;
+  text-decoration: underline;
+}
+
+.footer-separator {
+  width: 80%;
+  height: 1px;
+  background-color: var(--twitch-gray);
+  margin: 0 auto;
+}
+
+.copyright-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.github-link {
+  color: var(--text-muted);
+  transition: color var(--transition-speed) ease;
+  display: flex;
+  align-items: center;
+}
+
+.github-link:hover {
+  color: var(--text-light);
+}
+
+.github-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
 }
