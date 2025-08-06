@@ -13,8 +13,14 @@ A modern, minimalistic Chrome extension for logging into Twitch using your authe
 
 ## Installation
 
+### Option 1 – Install via Chrome Web Store (Recommended)
+1. Go to the official extension page:  
+   👉 [Twitch Token Login on Chrome Web Store](https://chromewebstore.google.com/detail/twitch-token-login/hhcibbgfnijghlpdkejnhflklnloihac)
+2. Click **Add to Chrome**.
+
+### Option 2 – Manual Installation (For Developers)
 1. Download or clone this repository.
-2. Open Chrome and navigate to `chrome://extensions/`.
+2. Open Chrome and go to `chrome://extensions/`.
 3. Enable **Developer mode** (top right).
 4. Click **Load unpacked** and select the extension folder.
 5. The Twitch Token Login icon will appear in your toolbar.
@@ -54,4 +60,3 @@ Created by [3d2faebf4bca96cacf2aa10dc002bf42](https://github.com/3d2faebf4bca96c
 
 **Disclaimer:**  
 This extension is for educational and development purposes only. Use responsibly and in accordance with Twitch's Terms of Service.
-
