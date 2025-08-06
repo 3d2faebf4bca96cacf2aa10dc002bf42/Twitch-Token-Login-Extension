@@ -31,7 +31,7 @@ A modern, minimalistic Chrome extension for logging into Twitch using your authe
 2. Enter your Twitch auth token in the popup input field.
 3. Click **Login to Twitch**.
 4. The extension clears old Twitch cookies, sets your new auth token, and reloads the current Twitch tab.
-5. You're instantly logged in—no username or password required.
+5. You're instantly logged in — no username or password required.
 
 ## Permissions
 
@@ -60,3 +60,4 @@ Created by [3d2faebf4bca96cacf2aa10dc002bf42](https://github.com/3d2faebf4bca96c
 
 **Disclaimer:**  
 This extension is for educational and development purposes only. Use responsibly and in accordance with Twitch's Terms of Service.
+
